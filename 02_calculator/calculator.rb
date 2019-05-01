@@ -19,18 +19,16 @@ def power(num_1, num_2)
 end
 
 def factorial(number)
-  factorial_total = []
+  new_number = 1
 
   if number == 0
-    return 0
+    return 1
   end
 
-  if number > 0
-    while number > 0 do
-      factorial_total.push(number)
-      number - 1
-    end
+  while number > 0
+    new_number = new_number * number
+    number = number - 1
   end
 
-  return factorial_total.inject(:*)
+  return new_number
 end
