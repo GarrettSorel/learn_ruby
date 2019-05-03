@@ -2,7 +2,7 @@ def translate(str)
   transform = str.split(" ")
   vowels = /^[aeiou]/
   consonants = /[bcdfghjklmnprstvwxyz]/
-  square = /[squ]/
+  square = /^squ/
   pig_latin = []
 
   transform.map do |s|
@@ -12,11 +12,11 @@ def translate(str)
       pig_latin.push(s[1..-1] + s[0] + "ay")
     elsif s.start_with?(consonants) && s[1].match?(consonants) && s[2].match?(vowels)
       pig_latin.push(s[2..-1] + s[0..1] + "ay")
-    elsif s.start_with?(consonants) && s[1].match?(consonants) && s[2].match?(consonants)
+    elsif (s.start_with?(consonants) && s[1].match?(consonants) && s[2].match?(consonants)) || s.start_with?(square)
       pig_latin.push(s[3..-1] + s[0..2] + "ay")
     elsif s.start_with?(/[qu]/)
       pig_latin.push(s[2..-1] + "quay")
+    end
   end
-
   pig_latin.join(" ")
 end
